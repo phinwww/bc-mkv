@@ -19,4 +19,5 @@ automatic:
 manual:
 * make 4 directories in the same folder you cloned to, titled "newvid" "newzip" "oldzip" and "work"
 * open 2 terminals and run ./vm-caption in one.
-* Put a zip of mp3s in "newzip". 
+* Put a zip of mp3s in "newzip", with your cover file as "cover.jpg"
+* Run gen-from-zip.sh in the other terminal, and wait for the file to render.
