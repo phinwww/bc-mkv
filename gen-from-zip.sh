@@ -7,6 +7,25 @@ NEWVID="newvid"
 DONE="oldzip"
 MP3="/radio/mp3"
 
+# yt setup:
+# Goto https://console.developers.google.com
+# Create app, enable Youtube Data API and create OAuth credentials, client id and client secret.
+# Goto https://developers.google.com/oauthplayground/ to authorize yourself and get a refresh token
+# make sure you enable "use your own oauth credentials" and then place your id/secret before getting your refresh token
+
+# Plug in client id, client secret and refresh token here
+client_id="[REPLACE]"
+client_secret="[REPLACE]"
+refresh_token="[REPLACE]"
+
+cid_base_url="apps.googleusercontent.com"
+
+token_url="https://accounts.google.com/o/oauth2/token"
+api_base_url="https://www.googleapis.com/upload/youtube/v3"
+api_url="$api_base_url/videos?part=snippet"
+access_token=$(curl -H "Content-Type: application/x-www-form-urlencoded" -d refresh_token="$refresh_token" -d client_id="$client_id" -d client_secret="$client_secret"  -d grant_type="refresh_token" $token_url| awk -F '"' '/access/{print $4}')
+auth_header="Authorization: Bearer $access_token"
+
 for z in $ZIPSRC/*.zip ; do
     echo "Processing $z ..."
     unzip -jd "$WORK" "$z"
@@ -62,4 +81,5 @@ for z in $ZIPSRC/*.zip ; do
 #    done  
     rm -rf "$WORK"/*
     mv -v "$z" "$DONE"
+curl -v --data-binary "@$NEWVID/$MKV" -H "Content-Type: application/octet-stream" -H "$auth_header" "$api_url"
 done
