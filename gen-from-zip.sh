@@ -75,7 +75,7 @@ for z in $ZIPSRC/*.zip ; do
 	     "$NEWVID/$MKV"
 
     rm -v "$NEWIMAGE"
-    # 2021-11-12: These are now copied before video generation
+    
 #    for f in "$WORK"/*.mp3 ; do
 #	mv -v "$f" "$MP3"
 #    done  
