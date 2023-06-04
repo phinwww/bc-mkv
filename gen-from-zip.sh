@@ -30,7 +30,7 @@ for z in $ZIPSRC/*.zip ; do
     echo "Processing $z ..."
     unzip -jd "$WORK" "$z"
 
-    # 2021-11-12: Copy mp3s to mp3 dump first as they are now renamed for index order
+    # Copy mp3s to mp3 dump first as they are now renamed for index order
 ##    for f in "$WORK"/*.mp3 ; do
 ##	cp -v "$f" "$MP3"
 ##    done  
@@ -47,7 +47,7 @@ for z in $ZIPSRC/*.zip ; do
 	-vf "scale=(iw*sar)*min(1280/(iw*sar)\,720/ih):ih*min(1280/(iw*sar)\,720/ih), pad=1280:720:(1280-iw*min(1280/iw\,720/ih))/2:(720-ih*min(1280/iw\,720/ih))/2" \
 	"$NEWIMAGE"
 
-    # 2021-11-12: Rename mp3 files to their index numbers with leading zeros so they are in correct album order, at last
+    # Rename mp3 files to their index numbers with leading zeros so they are in correct album order, at last
     cd "$WORK"
     for f in *.mp3 ; do
 	idxnum=$( printf "%03d" $( id3v2 -R "$f"  | grep TRCK | cut -d ' ' -f 2 ) )
