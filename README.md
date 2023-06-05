@@ -21,3 +21,6 @@ optionally, you can also upload rendered videos to YouTube straight from the com
 * open 2 terminals and run `./vm-caption.sh` in one. i use screen to run it, you probably should too.
 * Put a zip of mp3s in "newzip", with your cover file as "cover.jpg"
 * Run `./gen-from-zip.sh` in the other terminal, and wait for the file to render.
+
+## credits & special thanks
+*  myke420247 for building & helping with the base script
